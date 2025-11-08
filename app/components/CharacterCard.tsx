@@ -27,7 +27,10 @@ export const CharacterCard = ({ character, isFavorite, onToggleFavorite, onClick
           height={200}
         />
         <button
-          onClick={() => onToggleFavorite(character.id)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleFavorite(character.id);
+          }}
           className="absolute top-3 right-3 p-2 bg-slate-900/80 cursor-pointer backdrop-blur-sm rounded-full hover:bg-slate-900 transition-colors"
           aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         >
