@@ -1,11 +1,15 @@
 import { Episode } from "../types";
 
 export const groupEpisodesBySeason = (
-  episodes: Episode[],
+  episodes: Episode[] | Episode,
 ): Record<string, Episode[]> => {
   const grouped: Record<string, Episode[]> = {};
 
-  episodes.forEach((episode) => {
+  if (!Array.isArray(episodes)) {
+    episodes = [episodes];
+  }
+
+  episodes?.forEach((episode) => {
     const match = episode.episode.match(/S(\d+)E(\d+)/);
     if (!match) return;
 
