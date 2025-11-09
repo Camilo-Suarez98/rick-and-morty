@@ -1,38 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personajes de Rick y Morty
 
-## Getting Started
+Una aplicación Next.js para explorar los personajes de la serie Rick y Morty utilizando la [API de Rick y Morty](https://rickandmortyapi.com/).
 
-First, run the development server:
+## Características
+
+- Búsqueda de personajes por nombre cons debounce de 300ms
+- Filtro por estado (alive, dead, unknown) y género
+- Detalle de cada personaje
+- Paginación
+- Opción de guardar personajes en favoritos y verlos en una lista
+- Diseño responsivo
+- Accesible
+- Interfaz moderna con Tailwind CSS
+
+## Primeros pasos
+
+### Requisitos
+
+- Node.js 18+
+- npm
+
+### Instalación
 
 ```bash
+git clone https://github.com/Camilo-Suarez98/rick-and-morty.git
+cd rick-and-morty
+
+npm install
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en el navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts disponibles
+```bash
+npm run dev      # Iniciar el servidor de desarrollo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run lint     # Ejecutar ESLint
 
-## Learn More
+npm run test     # Ejecutar pruebas
 
-To learn more about Next.js, take a look at the following resources:
+npm run format   # Formatear el código con Prettier
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estructura del proyecto
+```
+src/
+├── app/              # Páginas del enrutador de la aplicación Next.js
+│   ├── character/    # Página de detalles del personaje
+│   ├── favorites/    # Página de favoritos
+│   ├── layout.tsx    # Diseño raíz
+│   └── page.tsx      # Página de inicio
+├── components/       # Componentes reutilizables
+├── lib/             # Utilidades y hooks
+└── types/           # Definiciones de tipos TypeScript
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Testing
 
-## Deploy on Vercel
+Las pruebas se escriben utilizando Jest y React Testing Library:
+```bash
+npm run test          # Ejecutar todas las pruebas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npm run test:watch    # Ejecutar pruebas en modo de observación
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Decisiones técnicas clave
 
-# rick-and-morty
+- **Next.js 16 App Router**: Enrutamiento moderno con componentes de servidor/cliente
+- **TypeScript**: Lenguaje de programación fuertemente tipado para evitar errores en tiempo de ejecución
+- **Tailwind CSS**: Framework de estilos
+- **localStorage**: Guardar datos del lado del cliente para los favoritos
+- **Jest**: Framework de testing
