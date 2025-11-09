@@ -26,4 +26,4 @@ Implementé aria-label y navegación por teclado para los botones.
 
 ## 7. Optimismo
 
-Implementé startTransition para que el estado se actualice instantáneamente cuando se marca o desmarca un personaje como favorito en la página de favoritos.
+Implementé startTransition para que el estado se actualice instantáneamente cuando se marca o desmarca un personaje como favorito en la página de favoritos. En este caso no utilicé Suspense dado que el fetching de los personajes favoritos se hace en el useEffect y no en el renderizado del componente y depende tambien de los filtros, por lo que no se puede utilizar Suspense.
