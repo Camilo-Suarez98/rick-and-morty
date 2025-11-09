@@ -1,4 +1,4 @@
-import { ApiResponse, Character } from "../types";
+import { ApiResponse, Character, Episode } from "../types";
 
 const API_BASE_URL = "https://rickandmortyapi.com/api";
 
@@ -24,6 +24,19 @@ export const getCharacterById = async (id: string): Promise<Character> => {
 
   if (!response.ok) {
     throw new Error("Failed to fetch character");
+  }
+  return response.json();
+};
+
+export const getEpisodesByCharacterId = async (ids: string): Promise<Episode | Episode[]> => {
+  const response = await fetch(`${API_BASE_URL}/episode/${ids}`,
+    {
+      next: { revalidate: 3600 },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch episodes");
   }
   return response.json();
 };
