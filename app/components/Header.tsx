@@ -8,8 +8,8 @@ export const Header = () => {
   return (
     <nav className="bg-slate-900/50 backdrop-blur-sm border-b border-slate-700/50 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
+        <div className="flex flex-col items-center justify-between md:flex-row">
+          <h1 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 md:mb-0">
             Rick & Morty Explorer
           </h1>
 

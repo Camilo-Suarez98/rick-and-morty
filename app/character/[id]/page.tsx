@@ -60,7 +60,7 @@ export default function CharacterDetailPage() {
         </Link>
       </div>
       <div className="bg-linear-to-br from-slate-800 to-slate-900 rounded-xl overflow-hidden border border-slate-700/50">
-        <div className="flex md">
+        <div className="flex flex-col md:flex-row">
           {character && (
             <Image
               src={character?.image}
@@ -70,7 +70,7 @@ export default function CharacterDetailPage() {
               className="w-full md:w-64 h-64 object-cover"
             />
           )}
-          <div className="p-8 flex-1 space-y-4">
+          <div className="p-4 flex-1 space-y-4 md:p-8">
             <div className="relative flex items-center justify-between">
               <h1 className="text-4xl font-bold text-white">{character?.name}</h1>
               {character && (

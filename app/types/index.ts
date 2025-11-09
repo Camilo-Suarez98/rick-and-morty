@@ -39,3 +39,8 @@ export type ApiResponse<T> = {
 export type StatusBadgeProps = {
   status: string;
 };
+
+export type FilterProps = {
+  status: string;
+  gender: string;
+};
