@@ -1,42 +1,22 @@
 'use client';
-
-import { useRouter, useSearchParams } from 'next/navigation';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
+  onPageChange: (page: number) => void;
 };
 
-export function Pagination({ currentPage, totalPages }: PaginationProps) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const handlePageChange = (newPage: number) => {
-    const params = new URLSearchParams(searchParams);
-    params.set('page', newPage.toString());
-    router.push(`/?${params.toString()}`);
-  };
-
+export const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className="flex items-center justify-center gap-2 mt-6">
       <button
-        onClick={() => handlePageChange(currentPage - 1)}
+        onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="p-2 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="p-2 bg-slate-800 cursor-pointer border border-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors hover:bg-cyan-500 hover:text-white"
         aria-label="Previous page"
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="m15 18-6-6 6-6" />
-        </svg>
+        <ChevronLeft />
       </button>
 
       <span className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white font-medium">
@@ -44,23 +24,12 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
       </span>
 
       <button
-        onClick={() => handlePageChange(currentPage + 1)}
+        onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="p-2 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="p-2 bg-slate-800 cursor-pointer border border-slate-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors hover:bg-cyan-500 hover:text-white"
         aria-label="Next page"
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="m9 18 6-6-6-6" />
-        </svg>
+        <ChevronRight />
       </button>
     </div>
   );
