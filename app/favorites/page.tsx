@@ -1,10 +1,9 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CharacterCard } from "../components/CharacterCard";
 import { useRouter } from "next/navigation";
 import { useFavorites } from "../lib/hooks";
 import { getFavoriteCharacters } from "../lib/api";
-import { useState } from "react";
 import { Character } from "../types";
 import Loading from "./loading";
 import Error from "./_error";

@@ -1,4 +1,6 @@
-import { StatusBadgeProps } from "../types";
+type StatusBadgeProps = {
+  status: string;
+};
 
 export const StatusBadge = ({ status }: StatusBadgeProps) => {
   const statusColors = {

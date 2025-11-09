@@ -1,5 +1,4 @@
 "use client";
-
 import { FilterProps } from "../types";
 
 interface FiltersProps {
