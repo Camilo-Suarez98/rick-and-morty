@@ -1,19 +1,22 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, startTransition } from "react";
 
 export function useFavorites() {
-  const [favorites, setFavorites] = useState<number[]>(() => {
+  const [favorites, setFavorites] = useState<number[]>([]);
+
+  useEffect(() => {
     const stored = localStorage.getItem("favorites");
-    if (stored) {
-      try {
-        return JSON.parse(stored);
-      } catch (e) {
-        console.error("Failed to parse favorites", e);
-        return [];
-      }
+    if (typeof window === "undefined") return;
+
+    try {
+      const parsed = JSON.parse(stored || "[]");
+      startTransition(() => {
+        setFavorites(Array.isArray(parsed) ? parsed : []);
+      });
+    } catch (e) {
+      console.error("Failed to parse favorites", e);
     }
-    return [];
-  });
+  }, []);
   const toggleFavorite = (id: number) => {
     setFavorites((prev) => {
       const newFavorites = prev.includes(id)
