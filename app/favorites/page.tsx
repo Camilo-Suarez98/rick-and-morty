@@ -12,7 +12,9 @@ import Error from "./_error";
 export default function Favorites() {
   const router = useRouter();
   const { favorites, toggleFavorite } = useFavorites();
-  const [favoritesCharactersByUser, setFavoritesCharactersByUser] = useState<Character[]>([]);
+  const [favoritesCharactersByUser, setFavoritesCharactersByUser] = useState<
+    Character[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -24,15 +26,21 @@ export default function Favorites() {
         return;
       }
       try {
-        const favoritesCharacters = await getFavoriteCharacters(favorites.join(","));
-        setFavoritesCharactersByUser(Array.isArray(favoritesCharacters) ? favoritesCharacters : [favoritesCharacters]);
+        const favoritesCharacters = await getFavoriteCharacters(
+          favorites.join(","),
+        );
+        setFavoritesCharactersByUser(
+          Array.isArray(favoritesCharacters)
+            ? favoritesCharacters
+            : [favoritesCharacters],
+        );
       } catch (error) {
         console.error("Error fetching favorite characters:", error);
         setError(true);
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchFavorites();
   }, [favorites]);
 
@@ -41,10 +49,14 @@ export default function Favorites() {
 
   return (
     <div className="p-6 mx-auto max-w-7xl text-white">
-      <h1 className="text-4xl font-bold mb-4 text-center">Favorite Characters</h1>
+      <h1 className="text-4xl font-bold mb-4 text-center">
+        Favorite Characters
+      </h1>
       {favoritesCharactersByUser.length === 0 && (
         <div className="mt-8 flex items-center justify-center">
-          <p className="text-center text-2xl text-slate-500">No favorite characters found</p>
+          <p className="text-center text-2xl text-slate-500">
+            No favorite characters found
+          </p>
         </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -54,10 +66,12 @@ export default function Favorites() {
             character={character}
             isFavorite={favorites.includes(character.id)}
             onToggleFavorite={() => toggleFavorite(character.id)}
-            onClick={() => { router.push(`/character/${character.id}`) }}
+            onClick={() => {
+              router.push(`/character/${character.id}`);
+            }}
           />
         ))}
       </div>
     </div>
   );
-}
+};

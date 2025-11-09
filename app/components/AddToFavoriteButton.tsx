@@ -6,13 +6,13 @@ type AddToFavoriteButtonProps = {
   isFavorite: boolean;
   character: Character;
   size?: number;
-}
+};
 
 export const AddToFavoriteButton = ({
   onToggleFavorite,
   isFavorite,
   character,
-  size = 18
+  size = 18,
 }: AddToFavoriteButtonProps) => {
   return (
     <button
@@ -21,11 +21,11 @@ export const AddToFavoriteButton = ({
         onToggleFavorite(character.id);
       }}
       className="absolute top-3 right-3 p-2 bg-slate-800 cursor-pointer backdrop-blur-sm rounded-full transition-colors hover:bg-cyan-500 hover:text-white"
-      aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
     >
       <Heart
         size={size}
-        className={isFavorite ? 'fill-red-500 text-red-500' : 'text-white'}
+        className={isFavorite ? "fill-red-500 text-red-500" : "text-white"}
       />
     </button>
   );

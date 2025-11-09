@@ -31,7 +31,7 @@ export default function CharacterDetailPage() {
         const data = await getCharacterById(params.id as string);
         setCharacter(data);
       } catch (error) {
-        console.error('Failed to fetch character', error);
+        console.error("Failed to fetch character", error);
         setError(true);
       } finally {
         setLoading(false);
@@ -45,11 +45,13 @@ export default function CharacterDetailPage() {
 
     const fetchEpisodes = async () => {
       try {
-        const episodeIds = character.episode.map((url: string) => url.split('/').pop()).join(',');
+        const episodeIds = character.episode
+          .map((url: string) => url.split("/").pop())
+          .join(",");
         const episodesResponse = await getEpisodesByCharacterId(episodeIds);
         setEpisodesDetail(episodesResponse);
       } catch (error) {
-        console.error('Failed to fetch episodes', error);
+        console.error("Failed to fetch episodes", error);
         setError(true);
       } finally {
         setLoading(false);
@@ -64,10 +66,7 @@ export default function CharacterDetailPage() {
   return (
     <div className="p-6 mx-auto max-w-7xl text-white">
       <div className="relative flex items-center justify-between gap-2 mb-6">
-        <Link
-          href="/"
-          className="text-cyan-400 flex items-center gap-2"
-        >
+        <Link href="/" className="text-cyan-400 flex items-center gap-2">
           <MoveLeft />
           Back to list
         </Link>
@@ -85,7 +84,9 @@ export default function CharacterDetailPage() {
           )}
           <div className="p-4 flex-1 space-y-4 md:p-8">
             <div className="relative flex items-center justify-between">
-              <h1 className="text-4xl font-bold text-white">{character?.name}</h1>
+              <h1 className="text-4xl font-bold text-white">
+                {character?.name}
+              </h1>
               {character && (
                 <AddToFavoriteButton
                   onToggleFavorite={toggleFavorite}
@@ -110,11 +111,15 @@ export default function CharacterDetailPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
               <div>
                 <p className="text-sm text-slate-400">Origin</p>
-                <p className="text-white font-medium">{character?.origin.name}</p>
+                <p className="text-white font-medium">
+                  {character?.origin.name}
+                </p>
               </div>
               <div>
                 <p className="text-sm text-slate-400">Last known location</p>
-                <p className="text-white font-medium">{character?.location.name}</p>
+                <p className="text-white font-medium">
+                  {character?.location.name}
+                </p>
               </div>
             </div>
           </div>
@@ -123,11 +128,13 @@ export default function CharacterDetailPage() {
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-4">Episodes</h2>
         <div className="space-y-6">
-          {seasons.map(season => (
+          {seasons.map((season) => (
             <div key={season}>
-              <h3 className="text-lg font-semibold text-cyan-400 mb-3">Season {season.substring(1)}</h3>
+              <h3 className="text-lg font-semibold text-cyan-400 mb-3">
+                Season {season.substring(1)}
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {groupedEpisodes[season].map(episode => (
+                {groupedEpisodes[season].map((episode) => (
                   <div
                     key={episode.id}
                     className="bg-slate-900 p-4 rounded-lg border border-slate-700/50 hover:border-cyan-500/50 transition-colors"
@@ -135,9 +142,13 @@ export default function CharacterDetailPage() {
                     <div className="flex items-start justify-between">
                       <div>
                         <p className="text-white font-medium">{episode.name}</p>
-                        <p className="text-sm text-slate-400">{episode.episode}</p>
+                        <p className="text-sm text-slate-400">
+                          {episode.episode}
+                        </p>
                       </div>
-                      <span className="text-xs text-slate-500">{episode.air_date}</span>
+                      <span className="text-xs text-slate-500">
+                        {episode.air_date}
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -148,4 +159,4 @@ export default function CharacterDetailPage() {
       </div>
     </div>
   );
-};
+}

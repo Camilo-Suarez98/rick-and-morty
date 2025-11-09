@@ -1,5 +1,5 @@
-'use client';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+"use client";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type PaginationProps = {
   currentPage: number;
@@ -7,7 +7,11 @@ type PaginationProps = {
   onPageChange: (page: number) => void;
 };
 
-export const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
+export const Pagination = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: PaginationProps) => {
   return (
     <div className="flex items-center justify-center gap-2 mt-6">
       <button

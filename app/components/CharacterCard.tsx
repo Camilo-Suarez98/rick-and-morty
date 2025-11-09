@@ -10,7 +10,12 @@ type CharacterCardProps = {
   onClick: () => void;
 };
 
-export const CharacterCard = ({ character, isFavorite, onToggleFavorite, onClick }: CharacterCardProps) => {
+export const CharacterCard = ({
+  character,
+  isFavorite,
+  onToggleFavorite,
+  onClick,
+}: CharacterCardProps) => {
   return (
     <div
       className="bg-linear-to-br from-slate-800 to-slate-900 rounded-xl cursor-pointer overflow-hidden border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20"
@@ -38,7 +43,9 @@ export const CharacterCard = ({ character, isFavorite, onToggleFavorite, onClick
           <h3 className="text-lg font-bold text-white truncate mb-0">
             {character.name}
           </h3>
-          <span className="text-base font-semibold text-slate-300">{character.gender}</span>
+          <span className="text-base font-semibold text-slate-300">
+            {character.gender}
+          </span>
         </div>
 
         <div className="flex items-center gap-2">

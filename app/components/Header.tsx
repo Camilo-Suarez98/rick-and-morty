@@ -15,13 +15,13 @@ export const Header = () => {
 
           <div className="flex gap-2">
             <button
-              onClick={() => router.push('/')}
+              onClick={() => router.push("/")}
               className="px-4 py-2 rounded-lg cursor-pointer transition-colors bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white"
             >
               Characters
             </button>
             <button
-              onClick={() => router.push('/favorites')}
+              onClick={() => router.push("/favorites")}
               className="px-4 py-2 rounded-lg cursor-pointer transition-colors flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white"
             >
               <Heart size={18} />

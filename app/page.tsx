@@ -16,10 +16,10 @@ export default function Home() {
   const { favorites, toggleFavorite } = useFavorites();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [filters, setFilters] = useState({
-    status: '',
-    gender: '',
+    status: "",
+    gender: "",
   });
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -41,7 +41,7 @@ export default function Home() {
       };
       characters();
     } catch (error) {
-      console.error('Failed to fetch characters', error);
+      console.error("Failed to fetch characters", error);
       setError(true);
     } finally {
       setLoading(false);
@@ -67,7 +67,9 @@ export default function Home() {
               character={character}
               isFavorite={favorites.includes(character.id)}
               onToggleFavorite={() => toggleFavorite(character.id)}
-              onClick={() => { router.push(`/character/${character.id}`) }}
+              onClick={() => {
+                router.push(`/character/${character.id}`);
+              }}
             />
           ))}
         </div>
