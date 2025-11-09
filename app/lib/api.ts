@@ -2,7 +2,7 @@ import { ApiResponse, Character, Episode } from "../types";
 
 const API_BASE_URL = "https://rickandmortyapi.com/api";
 
-export const getCharacters = async (params?: string): Promise<ApiResponse<Character>> => {
+export const getCharacters = async (params?: URLSearchParams): Promise<ApiResponse<Character>> => {
   const response = await fetch(`${API_BASE_URL}/character/${params}`,
     {
       next: { revalidate: 3600 },
