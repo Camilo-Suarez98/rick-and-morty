@@ -3,7 +3,7 @@ import { ApiResponse, Character, Episode } from "../types";
 const API_BASE_URL = "https://rickandmortyapi.com/api";
 
 export const getCharacters = async (params?: URLSearchParams): Promise<ApiResponse<Character>> => {
-  const response = await fetch(`${API_BASE_URL}/character/${params}`,
+  const response = await fetch(`${API_BASE_URL}/character/?${params}`,
     {
       next: { revalidate: 3600 },
     },
@@ -37,6 +37,19 @@ export const getEpisodesByCharacterId = async (ids: string): Promise<Episode | E
 
   if (!response.ok) {
     throw new Error("Failed to fetch episodes");
+  }
+  return response.json();
+};
+
+export const getFavoriteCharacters = async (ids: string): Promise<Character | Character[]> => {
+  const response = await fetch(`${API_BASE_URL}/character/${ids}`,
+    {
+      next: { revalidate: 3600 },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch favorite characters");
   }
   return response.json();
 };
