@@ -11,22 +11,30 @@ import { AddToFavoriteButton } from "@/app/components/AddToFavoriteButton";
 import { StatusBadge } from "@/app/components/StatusBadge";
 import { Episode } from "../../types";
 import { groupEpisodesBySeason } from "@/app/lib/groupEpisodesBySeason";
+import Loading from "./loading";
+import Error from "./_error";
 
 export default function CharacterDetailPage() {
   const params = useParams();
-  const [character, setCharacter] = useState<Character | null>(null);
   const { favorites, toggleFavorite } = useFavorites();
+  const [character, setCharacter] = useState<Character | null>(null);
   const [episodesDetail, setEpisodesDetail] = useState<Episode | Episode[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const groupedEpisodes = groupEpisodesBySeason(episodesDetail);
   const seasons = Object.keys(groupedEpisodes).sort();
 
   useEffect(() => {
     const fetchCharacter = async () => {
+      setLoading(true);
       try {
         const data = await getCharacterById(params.id as string);
         setCharacter(data);
       } catch (error) {
         console.error('Failed to fetch character', error);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
     fetchCharacter();
@@ -42,11 +50,16 @@ export default function CharacterDetailPage() {
         setEpisodesDetail(episodesResponse);
       } catch (error) {
         console.error('Failed to fetch episodes', error);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
     fetchEpisodes();
   }, [character?.id, character?.episode]);
-  console.log('episodes', episodesDetail);
+
+  if (loading) return <Loading />;
+  if (error) return <Error />;
 
   return (
     <div className="p-6 mx-auto max-w-7xl text-white">
