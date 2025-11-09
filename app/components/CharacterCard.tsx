@@ -1,7 +1,7 @@
 import { Character } from "../types";
 import Image from "next/image";
 import { StatusBadge } from "./StatusBadge";
-import { Heart } from "lucide-react";
+import { AddToFavoriteButton } from "./AddToFavoriteButton";
 
 type CharacterCardProps = {
   character: Character;
@@ -26,19 +26,11 @@ export const CharacterCard = ({ character, isFavorite, onToggleFavorite, onClick
           width={200}
           height={200}
         />
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleFavorite(character.id);
-          }}
-          className="absolute top-3 right-3 p-2 bg-slate-900/80 cursor-pointer backdrop-blur-sm rounded-full hover:bg-slate-900 transition-colors"
-          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        >
-          <Heart
-            size={18}
-            className={isFavorite ? 'fill-red-500 text-red-500' : 'text-white'}
-          />
-        </button>
+        <AddToFavoriteButton
+          onToggleFavorite={onToggleFavorite}
+          isFavorite={isFavorite}
+          character={character}
+        />
       </div>
 
       <div className="p-4 space-y-3">
