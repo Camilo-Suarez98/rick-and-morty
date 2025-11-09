@@ -22,7 +22,13 @@ export function useFavorites() {
       const newFavorites = prev.includes(id)
         ? prev.filter((fav) => fav !== id)
         : [...prev, id];
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      startTransition(() => {
+        try {
+          localStorage.setItem("favorites", JSON.stringify(newFavorites));
+        } catch (e) {
+          console.error("Error saving favorites", e);
+        }
+      });
       return newFavorites;
     });
   };
